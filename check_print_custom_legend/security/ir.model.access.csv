@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_check_print_custom_legend_check_print_custom_legend,check_print_custom_legend.check_print_custom_legend,model_check_print_custom_legend_check_print_custom_legend,,1,0,0,0
