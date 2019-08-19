@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "check_print_custom_legend",
+    'name': "Check Print MX whit custom legend",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Formato de impresion de cheques para MX con leyenda personalizada por diario""",
 
     'description': """
-        Long description of module's purpose
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Xmarts",
+    'website': "https://www.xmarts.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/12.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -20,7 +18,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account_check_printing','account_check_printing_report_base','branch'],
+    'depends': ['base','account_check_printing','account_check_printing_report_base'],
 
     # always loaded
     'data': [
