@@ -1,15 +1,22 @@
 # -*- coding: utf-8 -*-
+from odoo import api, fields, models
 
-from odoo import models, fields, api
 
-# class check_print_custom_legend(models.Model):
-#     _name = 'check_print_custom_legend.check_print_custom_legend'
+class AccountJournalInherit(models.Model):
+    _name = 'account.journal'
+    _inherit = 'account.journal'
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
+    is_custom_legend = fields.Boolean(string="Usar leyenda personalizada?", default=False)
+    custom_legend_text = fields.Text(string="Leyenda personalizada")
+
+class ResPartnerBank(models.Model):
+    _name = 'res.partner.bank'
+    _inherit = 'res.partner.bank'
+
+    clabe = fields.Char(string="CLABE")
+
+# class ResBank(models.Model):
+#     _name = 'res.bank'
+#     _inherit = 'res.bank'
 #
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
+#     complete_name = fields.Text(string="Nombre completo")

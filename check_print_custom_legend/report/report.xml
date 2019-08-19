@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_check_letter_mx" model="report.paperformat">
+            <field name="name">Cheque-Carta</field>
+            <field name="default" eval="False" />
+            <field name="format">Letter</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+    <template id="account_check_printing_report_base.report_check_base">
+       <t t-call="web.basic_layout">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div class="row col-12">
+                            <table class="col-12" style="font-size: 16px;">
+                                <tr>
+                                    <td width="65%"/>
+                                    <td align="center" width="35%" style="padding: 85px 0 0 30px;"><span t-field="o.payment_date" t-options="{&quot;format&quot;: &quot;dd MMMM y&quot;}"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding: 50px 50px 0 0;"><span t-field="o.partner_id"/></td>
+                                    <td align="center" style="padding: 50px 0 0 70px;"><span t-esc="o.amount"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center" style="padding: 30px 140px 0 0;"><span>(<span t-esc="o.check_amount_in_words"/> 00/100 M.N.)</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center" style="padding: 10px 100px 0 0;"><strong><span style="margin-left: -120px;" t-field="o.journal_id.custom_legend_text"/></strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding: 190px 0 0 0;"><span style="margin-left: 25px;" t-field="o.communication" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row col-12">
+                            <table style="font-size: 14px; margin-left: 20px; margin-right: 40px;" class="col-12">
+                                <tr>
+                                    <td colspan="2" width="20%" align="center" style="padding: 30px 0 0 0;"><span t-field="o.l10n_mx_edi_partner_bank_id"/></td>
+                                    <td colspan="3" width="50%" style="padding: 70px 0 0 0;"><span t-field="o.partner_id"/><br/><br/>Cuenta Bancaria <span t-field="o.l10n_mx_edi_partner_bank_id.bank_id"/></td>
+                                    <td width="15%" align="left" style="padding: 30px 0 0 5px;"><span t-field="o.amount"/></td>
+                                    <td width="15%" align="left" style="padding: 70px 0 0 5px;"><br/><br/><span t-field="o.amount"/></td>
+                                </tr>
+                                <tr style="font-size: 10px;">
+                                    <td width="10%" style="padding: 530px 0 0 0;"/>
+                                    <td width="10%" style="padding: 530px 5px 0 0; word-break: break;" valign="top"><span t-field="o.create_uid" /></td>
+                                    <td width="13%" style="padding: 530px 0 0 0; word-break: break;" valign="top"><span t-field="o.create_uid" /></td>
+                                    <td width="24%" style="padding: 530px 0 0 0;"></td>
+                                    <td width="13%" style="padding: 530px 0 0 0;"><span t-esc="o.move_name[-4:]" valign="top"/></td>
+                                    <td align="left" style="padding: 530px 0 0 0;"><span t-field="o.amount" valign="top"/></td>
+                                    <td align="left" style="padding: 530px 0 0 0;"><span t-field="o.amount" valign="top"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <p style="page-break-before:always;"/>
+                </t>
+            </t>
+            </t>
+
+    </template>
+
+    <report id="account_check_printing_report_base.action_report_check_base"
+            string="Payment Check MX"
+            model="account.payment"
+            name="account_check_printing_report_base.report_check_base"
+            file="account_check_printing_report_base.report_check_base"
+            report_type="qweb-pdf"
+            paperformat="check_print_custom_legend.paperformat_check_letter_mx"/>
+
+
+</odoo>
