@@ -3,17 +3,17 @@
     <!-- Inherit Form View to Modify it -->
     <record id="inherit_to_account_check_printing" model="ir.ui.view">
         <field name="name">inherit_to_account_check_printing</field>
-        <field name="model">account.journal</field>
-        <field name="inherit_id" ref="account_check_printing.view_account_journal_form_inherited"/>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='check_next_number']" position="after">
+            <xpath expr="//field[@name='property_account_payable_id']" position="after">
                 <field name="is_custom_legend"/>
                 <field name="custom_legend_text" attrs="{'invisible': [('is_custom_legend', '=', False)], 'required': [('is_custom_legend','=',True)]}"/>
             </xpath>
 
         </field>
-    </record>
+    </record> 
     <record id="inherit_to_res_partner_bank" model="ir.ui.view">
         <field name="name">inherit_to_res_partner_bank</field>
         <field name="model">res.partner.bank</field>

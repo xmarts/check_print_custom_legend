@@ -3,8 +3,8 @@ from odoo import api, fields, models
 
 
 class AccountJournalInherit(models.Model):
-    _name = 'account.journal'
-    _inherit = 'account.journal'
+    _name = 'res.partner'
+    _inherit = 'res.partner'
 
     is_custom_legend = fields.Boolean(string="Usar leyenda personalizada?", default=False)
     custom_legend_text = fields.Text(string="Leyenda personalizada")
