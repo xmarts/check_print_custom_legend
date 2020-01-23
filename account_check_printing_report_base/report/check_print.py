@@ -67,23 +67,24 @@ class ReportCheckPrint(models.AbstractModel):
                 payment.journal_id.default_credit_account_id
             rec_lines = payment.move_line_ids.filtered(
                 lambda x: x.account_id.reconcile and x.account_id != pay_acc)
-            amls = rec_lines.matched_credit_ids.mapped('credit_move_id') + \
-                rec_lines.matched_debit_ids.mapped('debit_move_id')
-            amls -= rec_lines
-            for aml in amls:
-                date_due = aml.date_maturity
-                total_amt = self._get_total_amount(payment, aml)
-                residual_amt = self._get_residual_amount(payment, aml)
-                paid_amt = self._get_paid_amount(payment, aml)
-                line = {
-                    'date_due': date_due,
-                    'reference': aml.display_name,
-                    'number': aml.name,
-                    'amount_total': total_amt,
-                    'residual': residual_amt,
-                    'paid_amount': paid_amt,
-                }
-                lines[payment.id].append(line)
+            for x in rec_lines:
+                print("LINEAS :: ",x)
+                amls = x.matched_credit_ids.mapped('credit_move_id') + x.matched_debit_ids.mapped('debit_move_id')
+                amls -= x
+                for aml in amls:
+                    date_due = aml.date_maturity
+                    total_amt = self._get_total_amount(payment, aml)
+                    residual_amt = self._get_residual_amount(payment, aml)
+                    paid_amt = self._get_paid_amount(payment, aml)
+                    line = {
+                        'date_due': date_due,
+                        'reference': aml.display_name,
+                        'number': aml.name,
+                        'amount_total': total_amt,
+                        'residual': residual_amt,
+                        'paid_amount': paid_amt,
+                    }
+                    lines[payment.id].append(line)
         return lines
 
     @api.multi
