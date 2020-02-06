@@ -33,7 +33,7 @@
         <field name="inherit_id" ref="account.view_account_payment_form"/>
         <field name="arch" type="xml">
           <xpath expr="//field[@name='amount']" position="after">
-                <field name="amount_to_text"/>
+                <field name="amount_to_text" invisible="1"/>
             </xpath>
 
         </field>
