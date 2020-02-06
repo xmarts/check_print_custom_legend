@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models
-
+from . import amount_to_text
 
 class AccountJournalInherit(models.Model):
     _name = 'res.partner'
@@ -21,7 +21,7 @@ class ResPartnerBank(models.Model):
 #
 #     complete_name = fields.Text(string="Nombre completo")
 
-class AddAmountToTextACPay(object):
+class AddAmountToTextACPay(models.Model):
 	"""docstring for AddAmountToTextACPay"""
 	_inherit = 'account.payment'
 	
