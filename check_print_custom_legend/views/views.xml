@@ -26,6 +26,20 @@
 
         </field>
     </record>
+
+    <record id="inherit_to_account_invoice" model="ir.ui.view">
+        <field name="name">inherit_to_account_invoice</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='amount']" position="after">
+                <field name="amount_to_text"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
     <!-- explicit list view definition -->
     <!--
     <record model="ir.ui.view" id="check_print_custom_legend.list">
