@@ -20,3 +20,15 @@ class ResPartnerBank(models.Model):
 #     _inherit = 'res.bank'
 #
 #     complete_name = fields.Text(string="Nombre completo")
+
+class AddAmountToTextACPay(object):
+	"""docstring for AddAmountToTextACPay"""
+	_inherit = 'account.payment'
+	
+	amount_to_text = fields.Char(compute='_get_amount_to_text', string='Monto en Texto', readonly=True,
+                                 help='Amount of the invoice in letter', store=True)
+
+	@api.one
+	@api.depends('amount')
+	def _get_amount_to_text(self):
+		self.amount_to_text = amount_to_text.get_amount_to_text(self, self.amount, 'MXN')
