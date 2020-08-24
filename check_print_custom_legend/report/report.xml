@@ -31,7 +31,7 @@
                                     <td align="center" style="padding: 50px 0 0 70px;"><span t-esc="o.amount"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" align="center" style="padding: 35px 145px 0 0;"><span>(<span t-esc="o.amount_to_text"/>)</span></td>
+                                    <td colspan="2" align="center" style="padding: 45px 130px 0 0;"><span>(<span t-esc="o.amount_to_text"/>)</span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" align="center" style="padding: 10px 100px 0 0;"><strong><span style="margin-left: -120px;" t-field="o.partner_id.custom_legend_text"/></strong></td>
